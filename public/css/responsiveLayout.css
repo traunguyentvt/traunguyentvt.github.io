@@ -1,99 +1,70 @@
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
-
-body, html {
-  height: 100%;
-  font-family: Arial, sans-serif;
-}
-
-.container {
-  display: grid;
-  grid-template-areas:
-      'header header header'
-      'menu menu menu'
-      'content content content'
-      'footer footer footer';
-  grid-template-rows: auto auto 1fr auto;
-  grid-template-columns: 1fr 1fr 1fr;
-  height: 100%;
-}
-
 .header {
-  grid-area: header;
-  background-color: #ADD8E6;
-  padding: 20px;
+  background-color: rgb(12, 142, 142);
   text-align: center;
-  font-size: 24px;
-  font-weight: bold;
+  line-height: 50px;
+  margin: 0;
+}
+
+h1 {
+  margin: 0;
 }
 
 .menu {
-  grid-area: menu;
-  background-color: #2F4F4F;
-  overflow: hidden;
-}
-
-.menu div {
-  float: left;
-  padding: 15px 20px;
-  color: white;
-  cursor: pointer;
-}
-
-.content {
-  grid-area: content;
+  background-color: rgb(0, 22, 100);
   display: flex;
-  width: 100%;
+  justify-content: flex-start;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
-.column1, .column2, .column3 {
-  flex: 1;
-  padding: 50px;
-  background-color: #D3D3D3;
-  text-align: center;
-  border: 1px solid #fff;
+.menu_item {
+  color: white;
+  margin: 10px;
+  border: 1px solid rgb(108, 80, 80);
+  margin: 0;
+  padding: 10px;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  height: 200px;
+}
+
+.flex-item-left {
+  background-color: rgb(78, 65, 65);
+  padding: 10px;
+  flex: 30%;
+}
+
+.flex-item-mid {
+  background-color: rgb(88, 124, 124);
+  padding: 10px;
+  flex: 40%;
+}
+
+.flex-item-right {
+  background-color: rgb(112, 131, 139);
+  padding: 10px;
+  flex: 30%;
+}
+
+@media (max-width: 600px) {
+  .flex-item-left, .flex-item-mid {
+    flex: 50%;
+  }
+  .flex-item-right {
+      flex: 100%;
+  }
 }
 
 .footer {
-  grid-area: footer;
-  background-color: #2F4F4F;
-  padding: 10px;
+  background-color: rgb(18, 0, 100);
   text-align: center;
+  font-size: 30px;
   color: white;
-}
-
-/* Responsive Design */
-@media screen and (max-width: 600px) {
-  .menu div {
-      float: none;
-      display: block;
-      width: 100%;
-  }
-
-  .content {
-      flex-direction: column;
-  }
-
-  .column1, .column2, .column3 {
-      width: 100%;
-  }
-
-  /* .content .column1, .content .column3 {
-    padding: 50%;
-  }
-  .content .column2 {
-    width: 100%;
-  } */
-
-  .container {
-      grid-template-areas:
-          'header'
-          'menu'
-          'content'
-          'footer';
-      grid-template-columns: 1fr;
-  }
 }
