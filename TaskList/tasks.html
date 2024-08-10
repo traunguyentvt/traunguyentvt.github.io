@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Task list</title>
+    <link href="tasks.css" type="text/css" rel="stylesheet" />
+    <script src="jquery.min.js"></script>
+    <script src="jquery.tmpl.js"></script>
+    <script src="tasks.js"></script>
+  </head>
+
+  <body>
+    <header>
+      <span>TaskList</span>
+    </header>
+    <main>
+      <section id="taskCreation" class="not">
+        <form id="taskForm">
+          <div>
+            <label>Task</label>
+            <input
+              type="text"
+              required="required"
+              name="task"
+              class="large"
+              placeholder="Subject"
+            />
+          </div>
+          <div>
+            <label>Required by</label>
+            <input type="date" required="required" name="requiredBy" />
+          </div>
+          <div>
+            <label>Category</label>
+            <select name="category">
+              <option value="Personal">Personal</option>
+              <option value="Work">Work</option>
+            </select>
+          </div>
+          <nav>
+            <a href="#" id="saveTask">Save task</a>
+            <a href="#" id="clearTask">Clear task</a>
+            <a href="#" id="printTask">Print object to console</a>
+            <a href="#" id="loadTask">Load object into console</a>
+          </nav>
+          <input type="hidden" name="editIndex" id="editIndex" value="" />
+        </form>
+      </section>
+      <section>
+        <table id="tblTasks">
+          <colgroup>
+            <col width="40%" />
+            <col width="15%" />
+            <col width="15%" />
+            <col width="30%" />
+          </colgroup>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Due</th>
+              <th>Category</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <nav>
+          <a href="#" id="btnAddTask">Add task</a>
+        </nav>
+      </section>
+    </main>
+    <footer>You have <span id="taskCount">0</span> tasks</footer>
+    <script id="taskRow" type="text/x-jQuery-tmpl">
+      <tr>
+          <td>${task}</td>
+          <td><time datetime="${requiredBy}">${requiredBy}</time></td>
+          <td>${category}</td>
+          <td>
+              <nav>
+                  <a href="#" class="editRow">Edit</a>
+                  <a href="#" class="completeRow">Complete</a>
+                  <a href="#" class="deleteRow">Delete</a>
+              </nav>
+          </td>
+      </tr>
+    </script>
+  </body>
+</html>

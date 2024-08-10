@@ -1,0 +1,25 @@
+1. The preventDefault method is used in event handlers to prevent the default action that belongs to the event from occurring.
+
+2. A jQuery plugin is a reusable piece of code that extends the functionality of the jQuery library. 
+It can allow developers to encapsulate a specific set of methods or functionalities, making it easy to apply the same functionality to multiple elements across a project. 
+By creating a plugin, you can avoid code duplication and maintain a cleaner, more modular codebase.
+The jQuery plugin being used in this code is defined at the bottom of the script and is responsible for converting form data to a JavaScript object and vice versa. 
+The plugin extends jQuery's functionality by adding two custom methods: toObject and fromObject.
+
+3. Explain what each jQuery function call is doing.
+$(document).ready(function () {...}): This ensures that the enclosed code runs only after the entire document is fully loaded. It waits until the DOM is ready before executing the function.
+$('[required="required"]'): Selects all elements with the attribute required="required".
+.prev("label"): Selects the previous sibling element with the tag label for each selected element.
+.append("<span>*</span>"): Appends a <span>*</span> to each of the selected labels.
+.children("span"): Selects the newly appended <span> elements.
+.addClass("required"): Adds the required class to these <span> elements.
+$("tbody tr:even"): Selects all even rows (tr elements) within tbody elements.
+.addClass("even"): Adds the even class to these rows.
+$("#taskCreation").removeClass("not"): Removes the not class from the element with the ID taskCreation, likely making it visible or active.
+.closest("td"): Finds the closest parent td element.
+.siblings().andSelf(): Selects all sibling elements of the td as well as the td itself.
+.toggleClass("rowHighlight"): Toggles the rowHighlight class on these elements.
+$(evt.target).closest("tr").remove(): Removes the closest tr (table row) element to the clicked target.
+updateTaskCount(): Calls the function updateTaskCount to update the displayed number of tasks.
+$("#taskForm").fromObject(task): Populates the form #taskForm with the task object data using the custom fromObject method.
+$("#taskCreation").removeClass("not"): Removes the not class from the #taskCreation element.
