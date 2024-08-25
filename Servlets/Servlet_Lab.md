@@ -25,3 +25,6 @@
        -> It is necessary to stop Tomcat server and restart again to apply the new changes. It will appear in the browser.
     + 7. Describe an interesting problem you encountered (if any) and how you solved it.
        -> This lab is very complicated for me to do in the first time as I have less knowledge about Server Side. One of my biggest problems is Servlet was crashed when I run the web app. I did not realize why it happened. I read the documents again and again, then I found that Tomcat 10.x is not compatible with the current SDK. I tried to downgrade Tomcat to the 9.x version. I finally solved the problems. I took me a lot of time to solve it.
+
+  - Beer Advisor:
+    + This lab is really helpful to understand the Servlet and JSP page. I created BeerAdvisorServlet to handle server side. The index.jsp displays the firt page when user visits, and the result.jsp shows the result when user submits his choice. I finish almost the requirements of this lab except Unit Test.
