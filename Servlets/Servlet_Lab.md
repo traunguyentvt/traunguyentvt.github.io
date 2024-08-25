@@ -7,6 +7,6 @@
       I created 2 projects: Simple and Improved Calculator.
       It is not easy to set up the Tomcat server.
       It took me a day to figure out why the Servlet Server is crashed.
-      Tomcat should be on 9.x version.
+      We should use Tomcat with 9.x version.
 
     + 
