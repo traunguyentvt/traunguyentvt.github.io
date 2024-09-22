@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-@WebServlet(urlPatterns = {"/userposts", "/comments"})
+@WebServlet(name = "userPostsServlet", urlPatterns = {"*.ajax"})
 public class UserPostsServlet extends HttpServlet {
 
     // Handle GET requests for user data and comments
@@ -65,14 +65,14 @@ public class UserPostsServlet extends HttpServlet {
 
     // Simulated method to retrieve user data (replace with actual database queries)
     private JSONObject getUserDataById(String userId) {
-        if ("1".equals(userId)) {
+//        if ("1".equals(userId)) {
             JSONObject user = new JSONObject();
-            user.put("name", "John Doe");
-            user.put("email", "john@example.com");
+            user.put("name", "Trau Nguyen");
+            user.put("email", "traunguyen@email.com");
 
             JSONObject address = new JSONObject();
             address.put("street", "123 Main St");
-            address.put("city", "Anytown");
+            address.put("city", "Dallas");
             user.put("address", address);
 
             JSONArray posts = new JSONArray();
@@ -92,15 +92,15 @@ public class UserPostsServlet extends HttpServlet {
             user.put("posts", posts);
 
             return user;
-        }
-        return null;
+//        }
+//        return null;
     }
 
     // Simulated method to retrieve comments for a post (replace with actual database query)
     private JSONArray getCommentsForPost(String postId) {
         JSONArray comments = new JSONArray();
 
-        if ("1".equals(postId)) {
+//        if ("1".equals(postId)) {
             JSONObject comment1 = new JSONObject();
             comment1.put("name", "Alice");
             comment1.put("body", "This is a comment for post 1.");
@@ -110,7 +110,7 @@ public class UserPostsServlet extends HttpServlet {
             comment2.put("name", "Bob");
             comment2.put("body", "Another comment for post 1.");
             comments.put(comment2);
-        }
+//        }
 
         return comments;
     }

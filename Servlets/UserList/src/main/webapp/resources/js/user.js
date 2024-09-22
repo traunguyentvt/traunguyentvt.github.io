@@ -4,7 +4,6 @@ $(document).ready(function () {
         const userId = $('#userId').val();
         if (userId) {
             getUserData(userId);
-            getUserPosts(userId);
         } else {
             alert('Please enter a valid user ID.');
         }
@@ -13,20 +12,34 @@ $(document).ready(function () {
 
 function getUserData(userId) {
     // Get user data from backend
-    $.get(`/userposts?userId=${userId}`, function (user) {
+    // $.get(`/userposts?userId=${userId}`, function (user) {
+    //     if (user) {
+    //         const userInfoHtml = `
+    //             <h3>User Info</h3>
+    //             <p><strong>Name:</strong> ${user.name}</p>
+    //             <p><strong>Email:</strong> ${user.email}</p>
+    //             <p><strong>Address:</strong> ${user.address.street}, ${user.address.city}</p>
+    //         `;
+    //         $('#userInfo').html(userInfoHtml);
+    //     } else {
+    //         alert('User not found');
+    //     }
+    // }).fail(function () {
+    //     alert('Failed to load user data.');
+    // });
+
+    $.ajax("getUserData.ajax", {
+        "type": "get",
+        "data": {
+            "userId": userId
+        }
+    }).done(function(user) {
         if (user) {
-            const userInfoHtml = `
-                <h3>User Info</h3>
-                <p><strong>Name:</strong> ${user.name}</p>
-                <p><strong>Email:</strong> ${user.email}</p>
-                <p><strong>Address:</strong> ${user.address.street}, ${user.address.city}</p>
-            `;
-            $('#userInfo').html(userInfoHtml);
+            displayUserInfo(user);
+            displayUserPosts(user.posts);
         } else {
             alert('User not found');
         }
-    }).fail(function () {
-        alert('Failed to load user data.');
     });
 }
 
@@ -37,6 +50,16 @@ function getUserPosts(userId) {
     }).fail(function () {
         alert('Failed to load posts.');
     });
+}
+
+function displayUserInfo(user) {
+    const userInfoHtml = `
+                <h3>User Info</h3>
+                <p><strong>Name:</strong> ${user.name}</p>
+                <p><strong>Email:</strong> ${user.email}</p>
+                <p><strong>Address:</strong> ${user.address.street}, ${user.address.city}</p>
+            `;
+    $('#userInfo').html(userInfoHtml);
 }
 
 function displayUserPosts(posts) {
@@ -85,6 +108,9 @@ function displayUserPosts(posts) {
 
         if (commentName && commentBody) {
             postComment(postId, commentName, commentBody);
+
+            $(`#commentName-${postId}`).val("");
+            $(`#commentBody-${postId}`).val("");
         } else {
             alert('Please enter both name and comment.');
         }
@@ -112,16 +138,37 @@ function displayPostComments(postId, comments) {
 
 function postComment(postId, name, body) {
     // Post comment to the backend
-    $.post('/comments', {
-        postId: postId,
-        name: name,
-        body: body
-    }).done(function (comment) {
-        // Add the new comment to the post's comment section
-        const newCommentHtml = `<p><strong>${comment.name}:</strong> ${comment.body}</p>`;
-        $(`#comments-${postId}`).append(newCommentHtml);
-        alert('Comment posted successfully!');
-    }).fail(function () {
-        alert('Failed to post comment.');
+    // $.post('/comments', {
+    //     postId: postId,
+    //     name: name,
+    //     body: body
+    // }).done(function (comment) {
+    //     // Add the new comment to the post's comment section
+    //     const newCommentHtml = `<p><strong>${comment.name}:</strong> ${comment.body}</p>`;
+    //     $(`#comments-${postId}`).append(newCommentHtml);
+    //     alert('Comment posted successfully!');
+    // }).fail(function () {
+    //     alert('Failed to post comment.');
+    // });
+
+    $.ajax("postComment.ajax", {
+        "type": "post",
+        "data": {
+            "postId": postId,
+            "name": name,
+            "body": body
+        }
+    }).done(function(comment) {
+        if (comment) {
+            let commentsHtml = '<h4>Comments</h4>';
+            commentsHtml += `
+                <p><strong>${comment.name}:</strong> ${comment.body}</p>
+            `;
+
+            $(`#comments-${postId}`).html(commentsHtml).show();
+            alert(`Your comment posted successfully!`);
+        } else {
+            alert('Cannot post your comment!');
+        }
     });
 }
